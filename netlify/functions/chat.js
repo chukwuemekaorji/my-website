@@ -132,15 +132,14 @@ exports.handler = async (event) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
-        messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...messages],
+        model: 'llama-3.1-8b-instant',
+        messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...messages.slice(-6)],
         max_tokens: 400,
         temperature: 0.75,
       }),
     });
 
     const data = await response.json();
-    console.log('Groq response:', JSON.stringify(data).slice(0, 300));
     const reply = data.choices?.[0]?.message?.content;
 
     if (!reply) throw new Error('No reply from Groq');
