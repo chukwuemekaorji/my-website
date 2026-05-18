@@ -140,6 +140,7 @@ exports.handler = async (event) => {
     });
 
     const data = await response.json();
+    console.log('Groq response:', JSON.stringify(data).slice(0, 300));
     const reply = data.choices?.[0]?.message?.content;
 
     if (!reply) throw new Error('No reply from Groq');
