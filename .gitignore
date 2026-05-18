@@ -14,3 +14,15 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# Other projects — keep these out of the portfolio repo
+app/
+lib/
+components/
+content_library/
+public/
+python/
+styles/
+types/
+node_modules/
+.playwright-mcp/
