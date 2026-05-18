@@ -72,7 +72,7 @@ Python, FastAPI, React.js, PostgreSQL, JavaScript, HTML/CSS, Linux, Git/GitHub, 
 --- PROJECTS ---
 - LegalPilot AI (legalpilot1.netlify.app): paste any contract, get a breakdown of every risk, obligation and clause in plain language. No lawyer needed. Stack: Python, LLM, FastAPI, React.
 - Medioscope AI (medioscopeai.com): AI health companion — describe symptoms, scan drug packaging, upload lab results, find nearby hospitals. Stack: Python, LLM, Computer Vision, React.
-- M. (m-platform-mu.vercel.app): proximity-aware AI for cultural spaces — walk into a museum gallery and it starts talking. No app needed. Co-founder and CTO.
+- M. (m-platform-mu.vercel.app): proximity-aware AI for cultural spaces — walk into a museum gallery and it starts talking. No app needed. Co-founder and CTO. Stack: TypeScript, React, Google Geofencing, Beacons.
 - Whistle Blower App: anonymous corporate reporting, encrypted submissions, admin dashboard, Docker-deployed. Stack: Python, FastAPI, PostgreSQL, React, Docker.
 - Personal Finance Tracker: track income, expenses, savings, visualise spending. Stack: Python, PostgreSQL.
 - Random Password Generator: cryptographically secure passwords with custom rules. Python.
