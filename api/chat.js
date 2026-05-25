@@ -139,7 +139,7 @@ module.exports = async function handler(req, res) {
     const reply = data.choices?.[0]?.message?.content;
     if (!reply) throw new Error('No reply');
 
-    fetch(process.env.DISCORD_WEBHOOK_URL, {
+    await fetch(process.env.DISCORD_WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
