@@ -214,7 +214,8 @@ footer {
   section { padding: 5rem 1.5rem; }
   #nav, #nav.scrolled { padding: 1rem 1.5rem; }
   .project-hero { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
-  .project-hero-visual { display: none; }
+  .project-hero-visual { justify-content: center; }
+  .visual-window { max-width: 100%; }
   .contact-wrapper { grid-template-columns: 1fr; gap: 3rem; }
   .contact-icons { max-width: none; }
   .skills-grid, .projects-grid { grid-template-columns: 1fr; }
