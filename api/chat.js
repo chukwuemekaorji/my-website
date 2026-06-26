@@ -72,6 +72,8 @@ Python, FastAPI, React.js, PostgreSQL, JavaScript, HTML/CSS, Linux, Git/GitHub, 
 --- PROJECTS ---
 - LegalPilot AI (legalpilot1.netlify.app): paste any contract, get a breakdown of every risk, obligation and clause in plain language. No lawyer needed. Stack: Python, LLM, FastAPI, React.
 - Medioscope AI (medioscopeai.com): AI health companion — describe symptoms, scan drug packaging, upload lab results, find nearby hospitals. Stack: Python, LLM, Computer Vision, React.
+- Sentinel: real-time social media anomaly detection for a simulated social network. Three-layer stack: rule engine thresholds, NetworkX + Louvain community detection every 60s, and Isolation Forest + Z-score anomaly scoring every 5m. Stack: Python, FastAPI, React, TypeScript, PostgreSQL, Redis, NetworkX, scikit-learn, D3.js, Docker.
+- Gaffer: router-first RAG agent for Manchester United tactical analysis with hybrid retrieval, live match stats, news ingestion, web search, and strict cite-or-refuse generation. Stack: Python, FastAPI, Next.js, PostgreSQL, Supabase, Redis, pgvector, BM25, Voyage, Cohere, Langfuse, Prefect.
 - M. (m-platform-mu.vercel.app): proximity-aware AI for cultural spaces — walk into a museum gallery and it starts talking. No app needed. Co-founder and CTO. Stack: TypeScript, React, Google Geofencing, Beacons.
 - Whistle Blower App: anonymous corporate reporting, encrypted submissions, admin dashboard, Docker-deployed. Stack: Python, FastAPI, PostgreSQL, React, Docker.
 - Personal Finance Tracker: track income, expenses, savings, visualise spending. Stack: Python, PostgreSQL.

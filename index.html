@@ -217,7 +217,7 @@
                   <span class="m-zone-name">Egyptian Hall · Exhibit 4B</span>
                 </div>
               </div>
-              <div class="doc-line w90" style="margin-top:0.8rem"></div>
+              <div class="doc-line w90 mt-08"></div>
               <div class="doc-line w75"></div>
               <div class="doc-line w85"></div>
               <div class="m-waveform">
@@ -235,7 +235,107 @@
 
       <div class="project-hero reveal-up">
         <div class="project-hero-content">
-          <div class="project-category">Full-Stack · PWA &nbsp;·&nbsp; <span style="color:#f472b6">Private</span></div>
+          <div class="project-category">AI · Security · Real-Time</div>
+          <h3 class="project-hero-title">Sentinel</h3>
+          <p class="project-hero-desc">Real-time social media anomaly detection for a simulated network. It runs a three-layer stack: rule thresholds per event, NetworkX plus Louvain community detection on a 60-second cadence, and Isolation Forest plus Z-score anomaly scoring on a 5-minute cadence. Redis-backed queues, live WebSocket alerts, and an investigation flow keep the whole pipeline moving.</p>
+          <div class="project-tech-stack">
+            <span>Python</span><span>FastAPI</span><span>React</span><span>TypeScript</span><span>PostgreSQL</span><span>Redis</span><span>NetworkX</span><span>scikit-learn</span><span>D3.js</span><span>Docker</span>
+          </div>
+          <div class="project-btn mj-btn">Architecture · Case Study</div>
+        </div>
+        <div class="project-hero-visual">
+          <div class="visual-window">
+            <div class="window-bar"><span></span><span></span><span></span></div>
+            <div class="window-body">
+              <div class="m-zone-alert sentinel-alert">
+                <div class="m-pulse-ring sentinel-ring"></div>
+                <div class="m-zone-info">
+                  <span class="m-zone-label sentinel-label">High-risk cluster</span>
+                  <span class="m-zone-name">Bot farm spike · 18 accounts · 42s</span>
+                </div>
+              </div>
+              <div class="doc-line w90 mt-08"></div>
+              <div class="doc-line w65"></div>
+              <div class="doc-line w80"></div>
+              <div class="doc-line w55"></div>
+              <div class="sentinel-grid">
+                <div class="result-tag risk sentinel-tag">Rule hit</div>
+                <div class="result-tag clause sentinel-tag">Cluster</div>
+                <div class="result-tag obligation sentinel-tag">Flagged</div>
+              </div>
+              <svg viewBox="0 0 220 120" width="100%" height="120" aria-hidden="true" class="sentinel-graph">
+                <defs>
+                  <linearGradient id="sentinelGlow" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#ef4444" stop-opacity="0.9" />
+                  </linearGradient>
+                </defs>
+                <g stroke="url(#sentinelGlow)" stroke-width="1.2" stroke-linecap="round" opacity="0.75">
+                  <line x1="38" y1="26" x2="94" y2="46" />
+                  <line x1="38" y1="26" x2="68" y2="88" />
+                  <line x1="94" y1="46" x2="150" y2="34" />
+                  <line x1="94" y1="46" x2="134" y2="84" />
+                  <line x1="150" y1="34" x2="180" y2="70" />
+                  <line x1="68" y1="88" x2="134" y2="84" />
+                  <line x1="134" y1="84" x2="180" y2="70" />
+                </g>
+                <g fill="#93c5fd">
+                  <circle cx="38" cy="26" r="6" />
+                  <circle cx="94" cy="46" r="6" />
+                  <circle cx="150" cy="34" r="6" />
+                  <circle cx="68" cy="88" r="6" />
+                </g>
+                <g fill="#fca5a5">
+                  <circle cx="134" cy="84" r="8" />
+                  <circle cx="180" cy="70" r="8" />
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-hero reveal-up">
+        <div class="project-hero-content">
+          <div class="project-category">AI · Sports Analytics · RAG</div>
+          <h3 class="project-hero-title">Gaffer</h3>
+          <p class="project-hero-desc">Router-first RAG agent for grounded tactical analysis of Manchester United. It combines hybrid retrieval with pgvector and BM25 via RRF, live match stats, news ingestion, and web search, then forces cite-or-refuse answers. The retrieval stack uses Voyage embeddings, Cohere rerank, Langfuse observability, Redis semantic caching, and Prefect ingestion flows.</p>
+          <div class="project-tech-stack">
+            <span>Python</span><span>FastAPI</span><span>Next.js</span><span>PostgreSQL</span><span>Supabase</span><span>Redis</span><span>pgvector</span><span>BM25</span><span>Voyage</span><span>Cohere</span><span>Langfuse</span><span>Prefect</span>
+          </div>
+          <div class="project-btn m-btn">Cite-first · Case Study</div>
+        </div>
+        <div class="project-hero-visual">
+          <div class="visual-window">
+            <div class="window-bar"><span></span><span></span><span></span></div>
+            <div class="window-body">
+              <div class="chat-msg user">what changed in united's build-up?</div>
+              <div class="chat-msg ai">I'd only answer from the retrieved match notes and stats, otherwise I'd refuse.</div>
+              <div class="scan-row mt-09">
+                <div class="scan-icon">1</div>
+                <div class="scan-info"><div class="doc-line w70"></div><div class="doc-line w45"></div></div>
+              </div>
+              <div class="scan-row">
+                <div class="scan-icon">2</div>
+                <div class="scan-info"><div class="doc-line w80"></div><div class="doc-line w55"></div></div>
+              </div>
+              <div class="scan-row">
+                <div class="scan-icon">3</div>
+                <div class="scan-info"><div class="doc-line w65"></div><div class="doc-line w40"></div></div>
+              </div>
+              <div class="m-stats gaffer-stats">
+                <div class="m-stat"><span class="m-stat-num">0.70</span><span class="m-stat-lbl">recall@5</span></div>
+                <div class="m-stat"><span class="m-stat-num">RRF</span><span class="m-stat-lbl">hybrid rank</span></div>
+                <div class="m-stat"><span class="m-stat-num">CITE</span><span class="m-stat-lbl">or refuse</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-hero reveal-up">
+        <div class="project-hero-content">
+          <div class="project-category">Full-Stack · PWA &nbsp;·&nbsp; <span class="private-label">Private</span></div>
           <h3 class="project-hero-title">MJ</h3>
           <p class="project-hero-desc">Private couples app built entirely from scratch. Real-time chat with typing indicators, read receipts, and emoji reactions — no third-party chat library. Daily question engine, sequential activity flows, streak system, and push notifications triggered by partner activity. 1,000+ original prompts across 8 activity types. Couple pairing with PIN security and persistent identity across devices.</p>
           <div class="project-tech-stack">
@@ -248,12 +348,12 @@
             <div class="window-bar"><span></span><span></span><span></span></div>
             <div class="window-body">
               <div class="mj-streak"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg> <span>12 day streak</span></div>
-              <div class="chat-msg user" style="margin-top:0.6rem">you good?😭</div>
+              <div class="chat-msg user mj-user">you good?😭</div>
               <div class="chat-msg ai">yeah just thinking about you ngl</div>
               <div class="mj-question">
                 <span class="mj-q-label"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Daily Question</span>
-                <div class="doc-line w90" style="margin-top:0.4rem;margin-bottom:0"></div>
-                <div class="doc-line w70" style="margin-bottom:0"></div>
+                <div class="doc-line w90 mj-question-line-top"></div>
+                <div class="doc-line w70 mj-question-line-bottom"></div>
               </div>
               <div class="mj-pills">
                 <span>Quiz</span><span>Game</span><span>Journey</span>
