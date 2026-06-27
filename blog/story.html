@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stories — Orji Chukwuemeka</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../layout.css">
+  <link rel="stylesheet" href="../components.css">
+</head>
+<body>
+
+  <nav id="nav">
+    <a class="nav-logo" href="../index.html#hero">OCS<span class="logo-dot">.</span></a>
+    <a class="blog-back" href="../index.html#stories">← back to site</a>
+  </nav>
+
+  <article class="blog-post" id="blog-post">
+    <p class="blog-post-meta">loading...</p>
+  </article>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">OCS<span>.</span></div>
+      <div class="footer-copy">© 2026 Orji Chukwuemeka Samuel</div>
+      <a href="../index.html#stories" class="footer-top">← Stories</a>
+    </div>
+  </footer>
+
+  <script>
+    const slug = new URLSearchParams(location.search).get('slug');
+    const root = document.getElementById('blog-post');
+
+    function renderError() {
+      root.innerHTML = `
+        <p class="blog-post-meta">story not found</p>
+        <h1 class="blog-post-title">hmm, this one doesn't exist</h1>
+        <p class="blog-post-body">that story isn't here. <a href="../index.html#stories">head back and pick another one</a>.</p>
+      `;
+    }
+
+    if (!slug) {
+      renderError();
+    } else {
+      fetch(`/api/stories?slug=${encodeURIComponent(slug)}`)
+        .then(res => { if (!res.ok) throw new Error('not found'); return res.json(); })
+        .then(story => {
+          document.title = `${story.title} — Orji Chukwuemeka`;
+          root.innerHTML = `
+            <div class="blog-post-meta">${story.read}</div>
+            <h1 class="blog-post-title">${story.title}</h1>
+            <div class="blog-post-hero"><img src="..${story.image}" alt="${story.title}"></div>
+            <div class="blog-post-body">${story.body.map(p => `<p>${p}</p>`).join('')}</div>
+          `;
+        })
+        .catch(renderError);
+    }
+  </script>
+
+</body>
+</html>

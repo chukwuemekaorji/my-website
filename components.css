@@ -3,7 +3,7 @@
 .stories-row { display: flex; gap: 2rem; max-width: 1200px; margin: 0 auto; }
 .story-bubble {
   background: none; border: none; cursor: pointer; display: flex; flex-direction: column;
-  align-items: center; gap: 0.7rem; font-family: 'Manrope', sans-serif;
+  align-items: center; gap: 0.7rem; font-family: 'Manrope', sans-serif; text-decoration: none;
 }
 .story-ring {
   width: 96px; height: 96px; border-radius: 50%; padding: 3px;
@@ -18,38 +18,23 @@
 }
 .story-label { font-size: 0.78rem; font-weight: 600; color: var(--text2); }
 
-/* story viewer */
-.story-viewer { position: fixed; inset: 0; z-index: 2000; display: none; align-items: center; justify-content: center; }
-.story-viewer.open { display: flex; }
-.story-viewer-backdrop { position: absolute; inset: 0; background: rgba(8,12,24,0.88); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
-.story-viewer-card {
-  position: relative; z-index: 1; width: min(420px, 92vw); max-height: 88vh;
-  background: #0b1220; border-radius: 18px; overflow: hidden;
-  display: flex; flex-direction: column; box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-  animation: storyPop 0.25s ease;
+/* blog post page */
+.blog-back {
+  display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;
+  color: var(--text2); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em;
+  transition: color 0.2s;
 }
-@keyframes storyPop { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: scale(1); } }
-.story-viewer-progress { display: flex; gap: 4px; padding: 0.7rem 0.9rem 0; z-index: 2; }
-.story-viewer-progress span { flex: 1; height: 3px; border-radius: 3px; background: rgba(255,255,255,0.25); }
-.story-viewer-progress span.active { background: #fff; }
-.story-close {
-  position: absolute; top: 0.6rem; right: 0.7rem; z-index: 3; width: 32px; height: 32px;
-  border-radius: 50%; border: none; background: rgba(0,0,0,0.35); color: #fff;
-  font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+.blog-back:hover { color: var(--blue-bright); }
+.blog-post { max-width: 680px; margin: 0 auto; padding: 7rem 1.5rem 6rem; }
+.blog-post-hero {
+  width: 100%; border-radius: var(--radius-lg); overflow: hidden; margin: 2rem 0 2.2rem;
+  box-shadow: var(--glass-shadow), var(--glass-inner); border: 1px solid var(--glass-border);
 }
-.story-viewer-media { width: 100%; aspect-ratio: 16/10; background: #000; flex-shrink: 0; }
-.story-viewer-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.story-viewer-body { padding: 1.3rem 1.4rem 1.6rem; overflow-y: auto; }
-.story-viewer-read { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); font-weight: 700; margin-bottom: 0.8rem; }
-.story-viewer-text p { font-size: 0.85rem; line-height: 1.75; color: #cbd5e1; margin-bottom: 1rem; }
-.story-viewer-text p:last-child { margin-bottom: 0; }
-.story-nav {
-  position: absolute; top: 0; bottom: 0; width: 36px; border: none; background: transparent;
-  color: rgba(255,255,255,0.55); font-size: 1.8rem; cursor: pointer; z-index: 2; transition: color 0.2s;
-}
-.story-nav:hover { color: #fff; }
-.story-nav-prev { left: 0; }
-.story-nav-next { right: 0; }
+.blog-post-hero img { width: 100%; display: block; object-fit: cover; max-height: 420px; }
+.blog-post-meta { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); font-weight: 700; margin-bottom: 0.8rem; }
+.blog-post-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 5vw, 3.6rem); letter-spacing: 0.04em; line-height: 1.05; color: var(--text); margin-bottom: 2rem; }
+.blog-post-body p { font-size: 0.95rem; line-height: 1.9; color: var(--text2); margin-bottom: 1.3rem; }
+.blog-post-body p:last-child { margin-bottom: 0; }
 
 /* projects */
 #projects { max-width: none; }
