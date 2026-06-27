@@ -32,6 +32,7 @@
   <nav id="nav">
     <a class="nav-logo" href="#hero">OCS<span class="logo-dot">.</span></a>
     <ul class="nav-links">
+      <li><a href="#stories">Stories</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -57,6 +58,23 @@
     <div class="hero-scroll-indicator">
       <div class="scroll-line"></div>
       <span>scroll</span>
+    </div>
+  </section>
+
+  <section id="stories">
+    <div class="section-header reveal-up">
+      <div class="section-eyebrow">— Recent</div>
+      <h2 class="section-heading">A few <em>stories</em></h2>
+    </div>
+    <div class="stories-row reveal-up">
+      <button type="button" class="story-bubble" data-story="0">
+        <span class="story-ring"><img src="images/hackerrank.gif" alt="hackerrank orchestrate hackathon"></span>
+        <span class="story-label">hackerrank</span>
+      </button>
+      <button type="button" class="story-bubble" data-story="1">
+        <span class="story-ring"><img src="images/hackathon.jpg" alt="road to start hack hackathon"></span>
+        <span class="story-label">hackathon</span>
+      </button>
     </div>
   </section>
 
@@ -462,6 +480,24 @@
       <button type="button" id="chat-send" aria-label="Send">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </button>
+    </div>
+  </div>
+
+  <!-- story viewer -->
+  <div class="story-viewer" id="story-viewer">
+    <div class="story-viewer-backdrop"></div>
+    <div class="story-viewer-card">
+      <div class="story-viewer-progress" id="story-progress"></div>
+      <button type="button" class="story-close" id="story-close" aria-label="Close">✕</button>
+      <div class="story-viewer-media">
+        <img id="story-img" src="" alt="">
+      </div>
+      <div class="story-viewer-body">
+        <div class="story-viewer-read" id="story-read"></div>
+        <div class="story-viewer-text" id="story-text"></div>
+      </div>
+      <button type="button" class="story-nav story-nav-prev" id="story-prev" aria-label="Previous story">‹</button>
+      <button type="button" class="story-nav story-nav-next" id="story-next" aria-label="Next story">›</button>
     </div>
   </div>
 
