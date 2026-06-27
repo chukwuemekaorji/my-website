@@ -6,8 +6,9 @@ const STORIES = [
     title: '82 out of 1,773 (and weirdly proud of it)',
     image: '/images/hackerrank.gif',
     read: '2 min read',
+    date: 'june 26, 2026',
     body: [
-      "so i did the hackerrank orchestrate hackathon this week and i'm still thinking about it days later, which either means it mattered or i need a hobby. probably both.",
+      "so i did the hackerrank orchestrate hackathon on june 26th and i'm still thinking about it days later, which either means it mattered or i need a hobby. probably both.",
       "it was a 24 hour challenge. build a multimodal evidence review system for damage claims. cars, laptops, packages, basically every object humans break and then try to explain away.",
       "final score: 61.4 out of 100. final rank: 82nd out of 1,773 people. top 5 percent on paper. felt like a disaster in my head, which is a very normal and very dumb way to feel about something you built from nothing in a day.",
       "funniest part is i was actually 4th after the first batch of results came out. i had already started mentally drafting my victory speech. then the rest of the leaderboard rolled in and i watched myself slide down the rankings like a stock chart after bad earnings.",
@@ -24,8 +25,9 @@ const STORIES = [
     title: 'got rejected by three teams before finding my people 😭',
     image: '/images/hackathon.jpg',
     read: '3 min read',
+    date: 'april 24-25, 2026',
     body: [
-      "something genuinely unhinged happened to me this weekend and i need to get it down before my brain smooths over the embarrassing parts.",
+      "something genuinely unhinged happened to me on april 24th and 25th and i need to get it down before my brain smooths over the embarrassing parts.",
       "i showed up to a hackathon solo. and not the cool \"i work better alone\" kind of solo, the kind where my supposed teammates ditched me the second i walked in. incredible start to a 24 hour event.",
       "one of the organizers took pity on me and walked me around team by team like i was a stray dog looking for somewhere warm to sleep. three teams said no. three. i have never been rejected that efficiently in my life, it was almost impressive.",
       "fourth stop was the one. a team of three whose idea i'd actually already seen on devpost before the event and liked. so when i walked up looking like a lost intern, they welcomed me in like they'd been expecting me the whole time. i still don't know how they pulled that off, it should be studied somewhere.",
@@ -34,7 +36,7 @@ const STORIES = [
       "built it from scratch. typescript, next.js, react, the claude api holding the whole thing together like duct tape made of intelligence. the second npm run dev came up clean, something clicked and we were just off.",
       "my eyes did not close once. not a blink that lasted too long, nothing.",
       "my laptop, on the other hand, had very strong opinions about running for 24 hours straight and made sure i knew about it. that was a side quest all its own.",
-      "but here's the actual point of all this. three strangers who didn't know my name at 1:30pm on friday were calling me a teammate by sunday morning. that doesn't happen by accident. open arms, zero ego, just pure let's build this energy the entire time.",
+      "but here's the actual point of all this. three strangers who didn't know my name at 1:30pm on friday were calling me a teammate by saturday morning. that doesn't happen by accident. open arms, zero ego, just pure let's build this energy the entire time.",
       "genuinely can't wait to see where this goes. the sky's just the warm up.",
     ],
   },
@@ -57,6 +59,6 @@ exports.handler = async (event) => {
   return {
     statusCode: 200,
     headers,
-    body: JSON.stringify(STORIES.map(({ slug, title, image, read }) => ({ slug, title, image, read }))),
+    body: JSON.stringify(STORIES.map(({ slug, title, image, read, date }) => ({ slug, title, image, read, date }))),
   };
 };

@@ -50,7 +50,7 @@
         .then(story => {
           document.title = `${story.title} — Orji Chukwuemeka`;
           root.innerHTML = `
-            <div class="blog-post-meta">${story.read}</div>
+            <div class="blog-post-meta">${story.date} · ${story.read}</div>
             <h1 class="blog-post-title">${story.title}</h1>
             <div class="blog-post-hero"><img src="..${story.image}" alt="${story.title}"></div>
             <div class="blog-post-body">${story.body.map(p => `<p>${p}</p>`).join('')}</div>
