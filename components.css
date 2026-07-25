@@ -76,6 +76,8 @@
 .project-btn.med-btn:hover { box-shadow: 0 12px 30px rgba(8,145,178,0.5); }
 .project-btn.m-btn { background: linear-gradient(135deg, #7c3aed, #4f46e5); box-shadow: 0 6px 20px rgba(124,58,237,0.3); }
 .project-btn.m-btn:hover { box-shadow: 0 12px 30px rgba(124,58,237,0.5); }
+.project-btn.caseiq-btn { background: linear-gradient(135deg, #0f766e, #0ea5e9); box-shadow: 0 6px 20px rgba(14,165,233,0.28); }
+.project-btn.caseiq-btn:hover { box-shadow: 0 12px 30px rgba(14,165,233,0.45); }
 .cto-badge { color: #a78bfa; font-weight: 700; }
 .project-btn.mj-btn { background: linear-gradient(135deg, #db2777, #9d174d); box-shadow: 0 6px 20px rgba(219,39,119,0.3); cursor: default; }
 .project-category.private-label { color: #f472b6; }
@@ -90,6 +92,29 @@
 .sentinel-tag { justify-content: center; }
 .sentinel-graph { display: block; margin-top: 0.2rem; }
 .gaffer-stats { margin-top: 0.9rem; }
+
+/* CaseIQ visual mockup */
+.caseiq-panel { display: flex; flex-direction: column; gap: 0.85rem; padding: 0.8rem; background: rgba(15,23,42,0.88); border: 1px solid rgba(56,189,248,0.18); border-radius: 10px; }
+.caseiq-panel-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.caseiq-panel-label { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: #67e8f9; font-weight: 700; }
+.caseiq-panel-count { font-size: 0.68rem; color: #cbd5e1; font-weight: 600; }
+.caseiq-track { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.35rem; align-items: end; min-height: 44px; }
+.caseiq-track span { display: block; border-radius: 999px; background: linear-gradient(180deg, rgba(14,165,233,0.95), rgba(14,116,144,0.75)); }
+.caseiq-track span:nth-child(1) { height: 14px; }
+.caseiq-track span:nth-child(2) { height: 26px; }
+.caseiq-track span:nth-child(3) { height: 18px; }
+.caseiq-track span:nth-child(4) { height: 34px; }
+.caseiq-track span:nth-child(5) { height: 22px; }
+.caseiq-track span:nth-child(6) { height: 30px; }
+.caseiq-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+.caseiq-metric { padding: 0.55rem 0.6rem; background: rgba(8,47,73,0.7); border: 1px solid rgba(56,189,248,0.14); border-radius: 8px; text-align: center; }
+.caseiq-metric strong { display: block; font-size: 0.72rem; color: #e0f2fe; letter-spacing: 0.04em; margin-bottom: 0.15rem; }
+.caseiq-metric span { font-size: 0.6rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em; }
+.caseiq-stack { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+.caseiq-card { flex: 1; padding: 0.7rem 0.6rem; border-radius: 8px; font-size: 0.64rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; }
+.caseiq-card.story { background: rgba(14,165,233,0.12); border: 1px solid rgba(14,165,233,0.2); color: #7dd3fc; }
+.caseiq-card.evidence { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.2); color: #6ee7b7; }
+.caseiq-card.ask { background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.2); color: #fcd34d; }
 
 /* MJ visual */
 .mj-streak { font-size: 0.78rem; color: #fbbf24; font-weight: 600; display: flex; align-items: center; gap: 0.4rem; }
