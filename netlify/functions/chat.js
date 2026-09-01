@@ -137,14 +137,14 @@ exports.handler = async (event) => {
     const device    = /mobile|android|iphone|ipad/i.test(userAgent) ? '📱 Mobile' : '💻 Desktop';
     const browser   = userAgent.match(/(Chrome|Safari|Firefox|Edge|OPR)/)?.[1] || 'Unknown';
 
-    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
+        'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
+        model: 'deepseek/deepseek-chat-v3.1:free',
         messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...messages.slice(-6)],
         max_tokens: 400,
         temperature: 0.75,
@@ -154,7 +154,10 @@ exports.handler = async (event) => {
     const data = await response.json();
     const reply = data.choices?.[0]?.message?.content;
 
-    if (!reply) throw new Error('No reply from Groq');
+    if (!reply) {
+      console.error('OpenRouter request failed', response.status, JSON.stringify(data));
+      throw new Error('No reply from OpenRouter');
+    }
 
     await fetch(process.env.DISCORD_WEBHOOK_URL, {
       method: 'POST',
