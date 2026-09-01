@@ -137,14 +137,14 @@ exports.handler = async (event) => {
     const device    = /mobile|android|iphone|ipad/i.test(userAgent) ? '📱 Mobile' : '💻 Desktop';
     const browser   = userAgent.match(/(Chrome|Safari|Firefox|Edge|OPR)/)?.[1] || 'Unknown';
 
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    const response = await fetch('https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        'Authorization': `Bearer ${process.env.GEMINI_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'z-ai/glm-5.2:free',
+        model: 'gemini-3.7-flash',
         messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...messages.slice(-6)],
         max_tokens: 400,
         temperature: 0.75,
@@ -155,8 +155,8 @@ exports.handler = async (event) => {
     const reply = data.choices?.[0]?.message?.content;
 
     if (!reply) {
-      console.error('OpenRouter request failed', response.status, JSON.stringify(data));
-      throw new Error('No reply from OpenRouter');
+      console.error('Gemini request failed', response.status, JSON.stringify(data));
+      throw new Error('No reply from Gemini');
     }
 
     await fetch(process.env.DISCORD_WEBHOOK_URL, {
