@@ -144,7 +144,7 @@ exports.handler = async (event) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'deepseek/deepseek-chat-v3.1:free',
+        model: 'z-ai/glm-5.2:free',
         messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...messages.slice(-6)],
         max_tokens: 400,
         temperature: 0.75,
