@@ -144,7 +144,10 @@ module.exports = async function handler(req, res) {
 
     const data  = await groqRes.json();
     const reply = data.choices?.[0]?.message?.content;
-    if (!reply) throw new Error('No reply');
+    if (!reply) {
+      console.error('Groq request failed', groqRes.status, JSON.stringify(data));
+      throw new Error('No reply');
+    }
 
     await fetch(process.env.DISCORD_WEBHOOK_URL, {
       method: 'POST',
@@ -167,6 +170,7 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({ reply });
   } catch (err) {
+    console.error('chat handler error', err);
     return res.status(500).json({ error: 'Something went wrong.' });
   }
 };
