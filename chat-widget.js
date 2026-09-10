@@ -49,76 +49,10 @@
     }
   }
 
-  // strip emojis so TTS doesn't say "crying face" etc.
-  function cleanForSpeech(text) {
-    return text.replace(/[\u{1F000}-\u{1FFFF}\u{2600}-\u{27FF}\u{FE00}-\u{FEFF}]/gu, '').trim();
-  }
-
-  // priority list of warm male voices across Windows, Mac, iOS, Android
-  const VOICE_PRIORITY = [
-    'Microsoft Guy Online (Natural) - English (United States)',
-    'Microsoft Christopher Online (Natural) - English (United States)',
-    'Microsoft Eric Online (Natural) - English (United States)',
-    'Microsoft Ryan Online (Natural) - English (United Kingdom)',
-    'Google UK English Male',
-    'Google US English',
-    'Daniel',   // Mac / iOS — British male, sounds warm
-    'Tom',      // Mac
-    'Alex',     // Mac
-    'Fred',     // Mac
-  ];
-
-  let lockedVoice = null;
-  function pickVoice() {
-    const voices = window.speechSynthesis.getVoices();
-    if (!voices.length) return;
-    for (const name of VOICE_PRIORITY) {
-      const match = voices.find(v => v.name === name);
-      if (match) { lockedVoice = match; return; }
-    }
-    // fallback: any English voice
-    lockedVoice = voices.find(v => v.lang.startsWith('en')) || voices[0];
-  }
-  speechSynthesis.onvoiceschanged = pickVoice;
-  pickVoice();
-
   function addMsg(role, text) {
     const el = document.createElement('div');
     el.className = `msg ${role}`;
     el.textContent = text;
-
-    if (role === 'bot') {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'play-btn';
-      btn.setAttribute('aria-label', 'Play voice');
-      btn.innerHTML = '▶';
-      function playText() {
-        window.speechSynthesis.cancel();
-        btn.innerHTML = '⏸';
-        const utter = new SpeechSynthesisUtterance(cleanForSpeech(text));
-        utter.voice = lockedVoice;
-        utter.rate  = 0.95;
-        utter.pitch = 1;
-        utter.onend = () => { btn.innerHTML = '▶'; };
-        window.speechSynthesis.speak(utter);
-      }
-
-      btn.onclick = () => {
-        if (window.speechSynthesis.speaking) {
-          window.speechSynthesis.cancel();
-          btn.innerHTML = '▶';
-        } else {
-          playText();
-        }
-      };
-
-      el.appendChild(btn);
-
-      // auto-play as soon as the message appears
-      playText();
-    }
-
     msgs.appendChild(el);
     msgs.scrollTop = msgs.scrollHeight;
     return el;
