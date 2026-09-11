@@ -242,6 +242,35 @@
     <div class="footer-wordmark" aria-hidden="true">ORJI</div>
   </footer>
 
+  <!-- AI chat widget -->
+  <div id="ai-trigger">
+    <button type="button" id="chat-btn" aria-label="Chat with Orji's AI">
+      <img src="images/iPhone_Memoji-removebg-preview.png" alt="" class="chat-btn-memoji">
+      <svg class="icon-close" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>
+    </button>
+    <div class="ai-trigger-label" id="aiTriggerLabel">talk to my ai</div>
+  </div>
+  <div id="chat-panel">
+    <div class="chat-header">
+      <div class="chat-avatar">OCS</div>
+      <div class="chat-header-info">
+        <div class="chat-header-name">Orji Chukwuemeka</div>
+        <div class="chat-header-status"><span class="status-dot"></span> Ask me anything</div>
+      </div>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="msg bot">Hey — I'm Orji. Ask me about my projects, what I build, or anything else.</div>
+    </div>
+    <div class="chat-input-row">
+      <input id="chat-input" type="text" placeholder="Ask something..." autocomplete="off">
+      <button type="button" id="chat-send" aria-label="Send">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+
   <script src="animations.js"></script>
+  <script src="main.js"></script>
+  <script src="chat-widget.js"></script>
 </body>
 </html>
