@@ -332,7 +332,6 @@ footer {
   .gallery-item { width: min(55vw, 200px); }
   #ai-trigger { top: auto; left: auto; right: 1.1rem; bottom: 1.1rem; transform: none; opacity: 0.6; transition: opacity 0.25s ease; }
   #ai-trigger:active { opacity: 1; }
-  #ai-trigger:has(#chat-btn.open) { opacity: 1; }
   #chat-btn { width: 76px; height: 76px; }
   .project-hero { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
   .project-hero-visual { justify-content: center; }

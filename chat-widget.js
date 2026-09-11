@@ -2,17 +2,25 @@
   const ENDPOINT = '/api/chat';
   const history = [];
 
-  const btn   = document.getElementById('chat-btn');
-  const panel = document.getElementById('chat-panel');
-  const input = document.getElementById('chat-input');
-  const send  = document.getElementById('chat-send');
-  const msgs  = document.getElementById('chat-messages');
+  const btn     = document.getElementById('chat-btn');
+  const panel   = document.getElementById('chat-panel');
+  const input   = document.getElementById('chat-input');
+  const send    = document.getElementById('chat-send');
+  const msgs    = document.getElementById('chat-messages');
+  const trigger = document.getElementById('ai-trigger');
+  const closeBtn = document.getElementById('chat-close');
 
-  btn.addEventListener('click', () => {
-    const open = panel.classList.toggle('open');
+  function setOpen(open) {
+    panel.classList.toggle('open', open);
     btn.classList.toggle('open', open);
+    if (trigger) trigger.classList.toggle('chat-open', open);
+    // the panel is top-anchored on mobile now (see chat-widget.css), so it
+    // stays fully visible above the keyboard — safe to focus on any device
     if (open) input.focus();
-  });
+  }
+
+  btn.addEventListener('click', () => setOpen(!panel.classList.contains('open')));
+  if (closeBtn) closeBtn.addEventListener('click', () => setOpen(false));
 
   send.addEventListener('click', submit);
   input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submit(); } });

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stories — Orji Chukwuemeka</title>
+  <title>Stories — Chukwuemeka Orji</title>
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,7 +25,7 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-logo">OCS<span>.</span></div>
-      <div class="footer-copy">© 2026 Orji Chukwuemeka Samuel</div>
+      <div class="footer-copy">© 2026 Chukwuemeka Orji Samuel</div>
       <a href="../index.html#stories" class="footer-top">← Stories</a>
     </div>
   </footer>
@@ -48,7 +48,7 @@
       fetch(`/api/stories?slug=${encodeURIComponent(slug)}`)
         .then(res => { if (!res.ok) throw new Error('not found'); return res.json(); })
         .then(story => {
-          document.title = `${story.title} — Orji Chukwuemeka`;
+          document.title = `${story.title} — Chukwuemeka Orji`;
           root.innerHTML = `
             <div class="blog-post-meta">${story.date} · ${story.read}</div>
             <h1 class="blog-post-title">${story.title}</h1>
