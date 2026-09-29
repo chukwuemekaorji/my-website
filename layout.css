@@ -157,6 +157,22 @@ section { padding: 7rem 4rem; position: relative; z-index: 2; }
 .about-text { color: var(--text2); font-size: 0.95rem; line-height: 1.85; margin-bottom: 1.2rem; }
 .toolkit-header { margin-top: 5rem; }
 
+/* experience */
+.experience-list {
+  display: flex; flex-direction: column;
+  max-width: 800px; margin: 0 auto;
+  border-top: 1px solid var(--border);
+}
+.experience-item {
+  display: grid; grid-template-columns: 160px 1fr; gap: 2rem;
+  padding: 1.8rem 0; border-bottom: 1px solid var(--border);
+}
+.experience-dates { font-size: 0.8rem; color: var(--text3); letter-spacing: -0.01em; padding-top: 0.2rem; }
+.experience-role { font-weight: 600; font-size: 1.05rem; color: var(--text); letter-spacing: -0.01em; }
+.experience-company { font-size: 0.9rem; color: var(--text2); margin-top: 0.2rem; }
+.experience-type { color: var(--muted); font-weight: 400; }
+.experience-desc { font-size: 0.88rem; color: var(--text3); line-height: 1.7; margin-top: 0.6rem; }
+
 /* toolkit — static categorized groups */
 .tools-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem;
