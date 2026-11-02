@@ -113,23 +113,37 @@ Python, FastAPI, React.js, PostgreSQL, JavaScript, HTML/CSS, Linux, Git/GitHub, 
 - Never make up facts about yourself
 - Sound like a person having a conversation, not someone writing a bio`;
 
-// Gemini sometimes answers 429/5xx under load — retry a couple of times before giving up
-async function callGemini(body) {
-  let res, data;
-  for (let attempt = 0; attempt < 3; attempt++) {
-    res = await fetch('https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${process.env.GEMINI_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body,
-    });
-    data = await res.json().catch(() => ({}));
-    if (res.ok || (res.status !== 429 && res.status < 500)) break;
-    await new Promise(r => setTimeout(r, 800 * (attempt + 1)));
-  }
-  return { res, data };
+const Anthropic = require('@anthropic-ai/sdk');
+
+// Claude Haiku 5.5 — the cheapest Claude model, and fast. Thinking is off and effort is low so replies start immediately.
+const MODEL = 'claude-haiku-5-5';
+const client = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY,
+  timeout: 8000,
+  maxRetries: 1,
+});
+
+// the API needs the history to start with a user turn and to hold plain text only
+function cleanHistory(messages) {
+  const recent = (Array.isArray(messages) ? messages : [])
+    .filter(m => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.trim())
+    .slice(-6)
+    .map(m => ({ role: m.role, content: m.content.slice(0, 2000) }));
+  while (recent.length && recent[0].role !== 'user') recent.shift();
+  return recent;
+}
+
+async function askClaude(messages) {
+  const response = await client.messages.create({
+    model: MODEL,
+    max_tokens: 400,
+    thinking: { type: 'disabled' },
+    output_config: { effort: 'low' },
+    // the persona prompt never changes, so cache it — cheaper and quicker on every message after the first
+    system: [{ type: 'text', text: SYSTEM_PROMPT, cache_control: { type: 'ephemeral' } }],
+    messages,
+  });
+  return response.content.filter(b => b.type === 'text').map(b => b.text).join('').trim();
 }
 
 module.exports = async function handler(req, res) {
@@ -155,17 +169,15 @@ module.exports = async function handler(req, res) {
     const device    = /mobile|android|iphone|ipad/i.test(userAgent) ? '📱 Mobile' : '💻 Desktop';
     const browser   = userAgent.match(/(Chrome|Safari|Firefox|Edge|OPR)/)?.[1] || 'Unknown';
 
-    const { res: orRes, data } = await callGemini(JSON.stringify({
-      model: 'gemini-3.7-flash',
-      messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...messages.slice(-6)],
-      max_tokens: 400,
-      temperature: 0.75,
-    }));
-    const reply = data.choices?.[0]?.message?.content;
-    if (!reply) {
-      console.error('Gemini request failed', orRes.status, JSON.stringify(data));
-      throw new Error('No reply');
+    const history = cleanHistory(messages);
+    if (!history.length) {
+      return res.status(400).json({ error: 'Say something first.' });
     }
+    const reply = await askClaude(history);
+    if (!reply) throw new Error('Empty reply from Claude');
+
+    // answer the visitor first; logging to Discord happens after the reply is already on its way
+    res.status(200).json({ reply });
 
     await fetch(process.env.DISCORD_WEBHOOK_URL, {
       method: 'POST',
@@ -185,8 +197,7 @@ module.exports = async function handler(req, res) {
         }],
       }),
     }).catch(() => {});
-
-    return res.status(200).json({ reply });
+    return;
   } catch (err) {
     console.error('chat handler error', err);
     return res.status(500).json({ error: 'Something went wrong.' });

@@ -1,0 +1,8 @@
+{
+  "name": "my-website",
+  "private": true,
+  "description": "Portfolio site — static pages plus the /api serverless functions",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.3.0"
+  }
+}
