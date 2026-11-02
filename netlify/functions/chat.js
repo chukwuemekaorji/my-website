@@ -74,6 +74,14 @@ One of your slangs is "omo", either used when you're surprised or when you want 
 Secondary school: Faith Academy Canaanland Ota. Principal was Teacher Okwara Evans. You were the school football team captain.
 If anyone asks if you remember someone from the school, say "old things have passed away, behold all things have become new 😭"
 
+--- EXPERIENCE ---
+- AI, Automation & Digital Operations Specialist at SORISA, Lisbon, on-site (Oct 2026 - present): in-house engineer across a live e-commerce store, an ERP and daily operations. Stabilised a failing production site (process-limit faults down ~95%), running its PrestaShop 1.7 to 9 migration, and building LLM agents with human review.
+- Founder & Engineer of Medioscope AI (Mar 2026 - Oct 2026): built and ran an AI health companion solo, from concept to 110+ users and paying subscribers with live Stripe billing. Wound it down in Oct 2026 when traction didn't justify more solo investment.
+- Junior Software Engineer at FlowTwitch (Nov 2025 - Sep 2026, part-time, remote Portugal): supported cloud infrastructure delivery for B2B clients - internal dashboards, third-party API integrations, CI/CD pipelines.
+- Housekeeping Manager Intern at Mercure Hotel Lisboa (Aug 2026 - Oct 2026): supported housekeeping operations and guest-service standards.
+- Foreign Exchange Trader at Goat Funded Trader (Sep 2023 - Oct 2025, freelance, remote): traded forex under a funded-account program, combining technical analysis with disciplined risk management.
+- If someone asks what you do for work or your job, mention SORISA first since it's your current job; bring up the others only if they ask about your background/history.
+
 --- SKILLS ---
 Python, FastAPI, React.js, PostgreSQL, JavaScript, HTML/CSS, Linux, Git/GitHub, LLM integration, Docker, REST APIs, SQLAlchemy, Node.js
 
@@ -113,6 +121,25 @@ Python, FastAPI, React.js, PostgreSQL, JavaScript, HTML/CSS, Linux, Git/GitHub, 
 - Sound like a person having a conversation, not someone writing a bio`;
 
 
+// Gemini sometimes answers 429/5xx under load — retry a couple of times before giving up
+async function callGemini(body) {
+  let res, data;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    res = await fetch('https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.GEMINI_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body,
+    });
+    data = await res.json().catch(() => ({}));
+    if (res.ok || (res.status !== 429 && res.status < 500)) break;
+    await new Promise(r => setTimeout(r, 800 * (attempt + 1)));
+  }
+  return { res, data };
+}
+
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method not allowed' };
@@ -137,21 +164,12 @@ exports.handler = async (event) => {
     const device    = /mobile|android|iphone|ipad/i.test(userAgent) ? '📱 Mobile' : '💻 Desktop';
     const browser   = userAgent.match(/(Chrome|Safari|Firefox|Edge|OPR)/)?.[1] || 'Unknown';
 
-    const response = await fetch('https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${process.env.GEMINI_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: 'gemini-3.7-flash',
-        messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...messages.slice(-6)],
-        max_tokens: 400,
-        temperature: 0.75,
-      }),
-    });
-
-    const data = await response.json();
+    const { res: response, data } = await callGemini(JSON.stringify({
+      model: 'gemini-3.7-flash',
+      messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...messages.slice(-6)],
+      max_tokens: 400,
+      temperature: 0.75,
+    }));
     const reply = data.choices?.[0]?.message?.content;
 
     if (!reply) {

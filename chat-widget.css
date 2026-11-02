@@ -1,12 +1,7 @@
 #ai-trigger {
-  position: fixed; top: 5.8rem; left: 50%; right: auto; bottom: auto;
-  transform: translateX(-50%);
+  position: fixed; top: auto; left: auto; right: 2rem; bottom: 2rem;
   z-index: 1000;
   display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
-}
-#ai-trigger.docked {
-  top: auto; left: auto; right: 2rem; bottom: 2rem;
-  transform: none;
 }
 #ai-trigger.chat-open { opacity: 0; pointer-events: none; }
 #chat-btn {

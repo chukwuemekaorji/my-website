@@ -10,66 +10,32 @@
     gtag('config', 'G-TGZYT4Y8PH');
   </script>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Chukwuemeka Orji — Software Engineer</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="chat-widget.css">
-  <link rel="stylesheet" href="layout.css">
-  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="styles.css?v=9">
+  <link rel="stylesheet" href="chat-widget.css?v=9">
+  <link rel="stylesheet" href="layout.css?v=9">
+  <link rel="stylesheet" href="components.css?v=9">
 </head>
 <body>
 
   <div class="frame-border left"></div>
   <div class="frame-border right"></div>
 
-  <div class="loader" id="loader">
-    <div class="loader-inner">
-      <div class="loader-bar"></div>
-      <span class="loader-text">Loading...</span>
+  <div class="gate" id="gate">
+    <img class="gate-side gate-side-left" src="images/gate-left.png" alt="">
+    <div class="gate-card">
+      <img class="gate-img" src="images/gate.jpg" alt="i'm exactly who the fuck i think i am.">
+      <p class="gate-text" id="gateText">wanna know more about me ?</p>
+      <div class="gate-actions" id="gateActions">
+        <button class="gate-btn" id="gateYes" type="button">yes</button>
+        <button class="gate-btn" id="gateNo" type="button">no</button>
+      </div>
     </div>
-  </div>
-
-  <nav id="nav">
-    <a class="nav-logo" href="#hero">OCS<span class="logo-dot">.</span></a>
-    <ul class="nav-links">
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#stories">Stories</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <div class="hero-scroll" id="heroScroll">
-    <section id="hero">
-      <div class="hero-glow"></div>
-      <div class="hero-content">
-        <div class="hero-text">
-          <h1 class="hero-title" id="heroTitle" data-split-text>Chukwuemeka Orji</h1>
-          <p class="hero-sub"><strong>I care more about whether it works than how it sounds.</strong> Software engineer building full-stack apps and AI tools.</p>
-          <a href="https://github.com/chukwuemekaorji" target="_blank" rel="noopener noreferrer" class="hero-cta">
-            <img src="images/photo.png" alt="" class="hero-cta-avatar">
-            See my GitHub
-          </a>
-        </div>
-        <div class="hero-stack">
-          <div class="gallery-stage" id="galleryStage">
-            <figure class="gallery-item"><img src="images/projects/legalpilot.jpg" alt="LegalPilot AI screenshot"><figcaption>LegalPilot AI</figcaption></figure>
-            <figure class="gallery-item"><img src="images/projects/caseiq.jpg" alt="CaseIQ screenshot"><figcaption>CaseIQ</figcaption></figure>
-            <figure class="gallery-item"><img src="images/projects/medioscope.jpg" alt="Medioscope AI screenshot"><figcaption>Medioscope AI</figcaption></figure>
-            <figure class="gallery-item"><img src="images/projects/m-platform.jpg" alt="M. screenshot"><figcaption>M.</figcaption></figure>
-            <figure class="gallery-item"><img src="images/projects/gaffer.jpg" alt="Gaffer screenshot"><figcaption>Gaffer</figcaption></figure>
-          </div>
-        </div>
-      </div>
-      <div class="hero-scroll-indicator" id="heroScrollCue">
-        <div class="scroll-line"></div>
-        <span>scroll</span>
-      </div>
-    </section>
+    <img class="gate-side gate-side-right" src="images/gate-right.png" alt="">
   </div>
 
   <section id="projects">
@@ -117,26 +83,9 @@
     </div>
 
     <div class="projects-more reveal-up">
-      <a href="/projects" class="projects-more-link">View more projects <span class="arrow">→</span></a>
+      <a href="projects.html" class="projects-more-link">View more projects <span class="arrow">→</span></a>
     </div>
 
-  </section>
-
-  <section id="stories">
-    <div class="section-header reveal-up">
-      <div class="section-eyebrow">— Recent</div>
-      <h2 class="section-heading">A few <em>stories</em></h2>
-    </div>
-    <div class="stories-row reveal-up">
-      <a class="story-bubble" href="blog/story.html?slug=hackerrank">
-        <span class="story-ring"><img src="images/hackerrank.gif" alt="hackerrank orchestrate hackathon"></span>
-        <span class="story-label">hackerrank</span>
-      </a>
-      <a class="story-bubble" href="blog/story.html?slug=hackathon">
-        <span class="story-ring"><img src="images/hackathon.jpg" alt="road to start hack hackathon"></span>
-        <span class="story-label">hackathon</span>
-      </a>
-    </div>
   </section>
 
   <section id="about">
@@ -167,8 +116,8 @@
 
       <div class="about-content reveal-right">
         <div class="about-heading">
-          <div class="about-heading-label">— About</div>
-          <h2 class="about-heading-name">Orji<br>Chukwuemeka</h2>
+          <div class="about-heading-label">— about</div>
+          <h2 class="about-heading-name">more about me</h2>
         </div>
         <p class="about-text"><strong>I've always been curious about how things work.</strong></p>
         <p class="about-text">Growing up, I could spend hours on a computer exploring the internet and figuring things out for myself. That curiosity eventually led me to teach myself how to code and start building things.</p>
@@ -192,6 +141,11 @@
           <div class="skill-pill"><img src="https://cdn.simpleicons.org/sqlalchemy" alt=""><span>SQLAlchemy</span></div>
           <div class="skill-pill"><img src="https://cdn.simpleicons.org/nodedotjs" alt=""><span>Node.js</span></div>
           <div class="skill-pill"><img src="https://cdn.simpleicons.org/express" alt=""><span>Express</span></div>
+          <div class="skill-pill"><img src="https://cdn.simpleicons.org/php" alt=""><span>PHP</span></div>
+          <div class="skill-pill"><img src="https://cdn.simpleicons.org/mysql" alt=""><span>MySQL</span></div>
+          <div class="skill-pill"><img src="https://cdn.simpleicons.org/redis" alt=""><span>Redis</span></div>
+          <div class="skill-pill"><img src="https://cdn.simpleicons.org/supabase" alt=""><span>Supabase</span></div>
+          <div class="skill-pill"><span>pgvector</span></div>
         </div>
       </div>
       <div class="tools-category">
@@ -202,6 +156,7 @@
           <div class="skill-pill"><img src="https://cdn.simpleicons.org/typescript" alt=""><span>TypeScript</span></div>
           <div class="skill-pill"><img src="https://cdn.simpleicons.org/html5" alt=""><span>HTML</span></div>
           <div class="skill-pill"><img src="https://cdn.simpleicons.org/css" alt=""><span>CSS</span></div>
+          <div class="skill-pill"><img src="https://cdn.simpleicons.org/nextdotjs" alt=""><span>Next.js</span></div>
         </div>
       </div>
       <div class="tools-category">
@@ -210,6 +165,11 @@
           <div class="skill-pill"><img src="https://cdn.simpleicons.org/anthropic" alt=""><span>Claude</span></div>
           <div class="skill-pill"><img src="https://cdn.simpleicons.org/cursor" alt=""><span>Cursor</span></div>
           <div class="skill-pill"><img src="https://cdn.simpleicons.org/langchain" alt=""><span>LangChain</span></div>
+          <div class="skill-pill"><img src="https://cdn.simpleicons.org/googlegemini" alt=""><span>Gemini</span></div>
+          <div class="skill-pill"><img src="https://cdn.simpleicons.org/modelcontextprotocol" alt=""><span>MCP</span></div>
+          <div class="skill-pill"><span>RAG</span></div>
+          <div class="skill-pill"><span>Cohere Rerank</span></div>
+          <div class="skill-pill"><span>Langfuse</span></div>
         </div>
       </div>
       <div class="tools-category">
@@ -220,8 +180,32 @@
           <div class="skill-pill"><img src="https://cdn.simpleicons.org/linux" alt=""><span>Linux</span></div>
           <div class="skill-pill"><img src="https://cdn.simpleicons.org/docker" alt=""><span>Docker</span></div>
           <div class="skill-pill"><img src="https://cdn.simpleicons.org/firebase" alt=""><span>Firebase</span></div>
+          <div class="skill-pill"><img src="https://cdn.simpleicons.org/githubactions" alt=""><span>GitHub Actions</span></div>
+          <div class="skill-pill"><span>AWS</span></div>
+          <div class="skill-pill"><img src="https://cdn.simpleicons.org/vercel" alt=""><span>Vercel</span></div>
+          <div class="skill-pill"><img src="https://cdn.simpleicons.org/netlify" alt=""><span>Netlify</span></div>
+          <div class="skill-pill"><img src="https://cdn.simpleicons.org/apache" alt=""><span>Apache</span></div>
+          <div class="skill-pill"><img src="https://cdn.simpleicons.org/prestashop" alt=""><span>PrestaShop</span></div>
+          <div class="skill-pill"><img src="https://cdn.simpleicons.org/stripe" alt=""><span>Stripe</span></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section id="stories">
+    <div class="section-header reveal-up">
+      <div class="section-eyebrow">— Recent</div>
+      <h2 class="section-heading">A few <em>stories</em></h2>
+    </div>
+    <div class="stories-row reveal-up">
+      <a class="story-bubble" href="blog/story.html?slug=hackerrank">
+        <span class="story-ring"><img src="images/hackerrank.gif" alt="hackerrank orchestrate hackathon"></span>
+        <span class="story-label">hackerrank</span>
+      </a>
+      <a class="story-bubble" href="blog/story.html?slug=hackathon">
+        <span class="story-ring"><img src="images/hackathon.jpg" alt="road to start hack hackathon"></span>
+        <span class="story-label">hackathon</span>
+      </a>
     </div>
   </section>
 
@@ -234,21 +218,21 @@
       <div class="experience-item">
         <div class="experience-dates">Oct 2026 — Present</div>
         <div class="experience-main">
-          <div class="experience-role">AI Specialist</div>
-          <div class="experience-company">SORISA</div>
-          <p class="experience-desc">Working on AI and machine learning initiatives.</p>
+          <div class="experience-role">AI, Automation &amp; Digital Operations Specialist</div>
+          <div class="experience-company">SORISA <span class="experience-type">· On-site · Lisbon</span></div>
+          <p class="experience-desc">In-house engineer across a live e-commerce store, an ERP and daily operations: stabilised a failing production site (process-limit faults down ~95%), running its PrestaShop 1.7 → 9 migration, and building LLM agents with human review.</p>
         </div>
       </div>
       <div class="experience-item">
-        <div class="experience-dates">Mar 2026 — Present</div>
+        <div class="experience-dates">Mar 2026 — Oct 2026</div>
         <div class="experience-main">
-          <div class="experience-role">Founder</div>
+          <div class="experience-role">Founder &amp; Engineer</div>
           <div class="experience-company">Medioscope</div>
-          <p class="experience-desc">Building an AI health companion that turns symptoms, drug packaging, and lab results into plain-language answers.</p>
+          <p class="experience-desc">Built and ran an AI health companion solo, turning symptoms, drug packaging and lab results into plain-language answers, from concept to 110+ users and paying subscribers. Wound it down in Oct 2026.</p>
         </div>
       </div>
       <div class="experience-item">
-        <div class="experience-dates">Nov 2025 — Oct 2026</div>
+        <div class="experience-dates">Nov 2025 — Sep 2026</div>
         <div class="experience-main">
           <div class="experience-role">Junior Software Engineer</div>
           <div class="experience-company">FlowTwitch <span class="experience-type">· Part-time · Remote, Portugal</span></div>
@@ -279,38 +263,54 @@
       <div class="section-eyebrow">— Contact</div>
       <h2 class="section-heading">Get in <em>touch.</em></h2>
     </div>
-    <div class="contact-wrapper">
-      <div class="contact-icons reveal-left">
-        <a href="mailto:chukwuemekaorji19@gmail.com" class="contact-icon-btn" aria-label="Email">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/chukwuemekaorji1" target="_blank" rel="noopener noreferrer" class="contact-icon-btn" aria-label="LinkedIn">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://github.com/chukwuemekaorji" target="_blank" rel="noopener noreferrer" class="contact-icon-btn" aria-label="GitHub">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
-        </a>
-        <a href="https://instagram.com/chukwuemekaorji_" target="_blank" rel="noopener noreferrer" class="contact-icon-btn" aria-label="Instagram">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="currentColor" stroke-width="2"/></svg>
-        </a>
+    <div class="printer" id="printer" data-stage="processing">
+      <div class="printer-machine">
+        <div class="printer-header">
+          <div class="printer-status">
+            <span class="printer-indicator" aria-hidden="true">
+              <svg class="printer-spinner" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9"/></svg>
+              <svg class="printer-check" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.7 8.2-5.5 5.5a1 1 0 0 1-1.4 0l-2.5-2.5a1 1 0 1 1 1.4-1.4l1.8 1.8 4.8-4.8a1 1 0 0 1 1.4 1.4z"/></svg>
+            </span>
+            <span class="printer-status-text" id="printerStatus" role="status" aria-live="polite">Processing your message</span>
+          </div>
+        </div>
+        <div class="printer-screen">
+          <div class="printer-screen-line">ORJI. contact desk</div>
+          <div class="printer-screen-sub">no queue, no hold music</div>
+        </div>
+        <div class="printer-slot" aria-hidden="true"></div>
       </div>
-      <div class="contact-right reveal-right">
-        <form class="contact-form" action="https://formspree.io/f/manrjzbz" method="POST">
-          <div class="field-group">
-            <input type="text" name="name" placeholder="Your name" required>
-          </div>
-          <div class="field-group">
-            <input type="email" name="_replyto" placeholder="Your email" required>
-          </div>
-          <div class="field-group">
-            <textarea name="message" placeholder="What's on your mind?" rows="5" required></textarea>
-          </div>
-          <button type="submit" class="submit-btn">
-            <span>Send message</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
-        </form>
+      <div class="printer-output">
+        <div class="printer-glow" aria-hidden="true"></div>
+        <div class="printer-feed" id="printerFeed">
+          <article class="receipt">
+            <div class="receipt-title">ORJI.</div>
+            <div class="receipt-sub">contact desk · order #0001</div>
+            <div class="receipt-rule"></div>
+            <a class="receipt-row" href="mailto:chukwuemekaorji19@gmail.com"><span>email</span><span>chukwuemekaorji19@gmail.com</span></a>
+            <a class="receipt-row" href="https://www.linkedin.com/in/chukwuemekaorji1" target="_blank" rel="noopener noreferrer"><span>linkedin</span><span>/in/chukwuemekaorji1</span></a>
+            <a class="receipt-row" href="https://github.com/chukwuemekaorji" target="_blank" rel="noopener noreferrer"><span>github</span><span>/chukwuemekaorji</span></a>
+            <a class="receipt-row" href="https://instagram.com/chukwuemekaorji_" target="_blank" rel="noopener noreferrer"><span>instagram</span><span>@chukwuemekaorji_</span></a>
+            <div class="receipt-rule"></div>
+            <div class="receipt-row receipt-total"><span>total</span><span>$0.00</span></div>
+            <div class="receipt-thanks">thanks for stopping by :)</div>
+          </article>
+        </div>
       </div>
+    </div>
+    <div class="printer-actions">
+      <button class="printer-btn" id="printerReplay" type="button"><span aria-hidden="true">↻</span> replay</button>
+      <button class="printer-btn" id="formToggle" type="button" aria-expanded="false" aria-controls="contactFormWrap">write me a message</button>
+    </div>
+    <div class="contact-form-wrap" id="contactFormWrap" hidden>
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/manrjzbz" method="POST">
+        <div class="field-group"><input type="text" name="name" placeholder="Your name" required autocomplete="name"></div>
+        <div class="field-group"><input type="email" name="_replyto" placeholder="Your email" required autocomplete="email"></div>
+        <div class="field-group"><textarea name="message" placeholder="What's on your mind?" rows="5" required></textarea></div>
+        <button type="submit" class="submit-btn"><span>Send message</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </form>
     </div>
   </section>
 
@@ -325,13 +325,17 @@
         <a href="mailto:chukwuemekaorji19@gmail.com" class="footer-col-link">chukwuemekaorji19@gmail.com</a>
       </div>
       <div class="footer-col">
-        <div class="footer-col-label">Socials</div>
-        <a href="https://www.linkedin.com/in/chukwuemekaorji1" target="_blank" rel="noopener noreferrer" class="footer-col-link">LinkedIn</a>
-        <a href="https://github.com/chukwuemekaorji" target="_blank" rel="noopener noreferrer" class="footer-col-link">GitHub</a>
-        <a href="https://instagram.com/chukwuemekaorji_" target="_blank" rel="noopener noreferrer" class="footer-col-link">Instagram</a>
-      </div>
-      <div class="footer-col">
         <div class="footer-col-label">Menu</div>
+        <a href="#projects" class="footer-col-link">Projects</a>
+        <a href="#about" class="footer-col-link">More about me</a>
+        <a href="#stories" class="footer-col-link">A few stories</a>
+        <a href="#experience" class="footer-col-link">Where I've worked</a>
+        <a href="#contact" class="footer-col-link">Contact</a>
+      </div>
+        <a href="#projects" class="footer-col-link">Projects</a>
+        <a href="#about" class="footer-col-link">More about me</a>
+        <a href="#contact" class="footer-col-link">Contact</a>
+      </div>
         <a href="#hero" class="footer-col-link">Home</a>
         <a href="#projects" class="footer-col-link">Projects</a>
         <a href="#about" class="footer-col-link">About</a>
@@ -341,10 +345,22 @@
 
     <div class="footer-inner">
       <div class="footer-copy">Based in Lisbon, Portugal</div>
-      <div class="footer-copy">© 2026 Chukwuemeka Orji Samuel</div>
+      <div class="footer-copy">© <span class="footer-year">2026</span> Chukwuemeka Orji Samuel</div>
     </div>
     <div class="footer-wordmark" aria-hidden="true">ORJI</div>
   </footer>
+
+  <!-- site menu -->
+  <div id="site-menu">
+    <button type="button" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">menu</button>
+    <nav id="menuPanel" aria-label="Site menu" hidden>
+      <a href="#projects">Projects</a>
+      <a href="#about">More about me</a>
+      <a href="#stories">A few stories</a>
+      <a href="#experience">Where I've worked</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
 
   <!-- AI chat widget -->
   <div id="ai-trigger">
@@ -376,8 +392,8 @@
     </div>
   </div>
 
-  <script src="animations.js"></script>
-  <script src="main.js"></script>
-  <script src="chat-widget.js"></script>
+  <script src="animations.js?v=9"></script>
+  <script src="main.js?v=9"></script>
+  <script src="chat-widget.js?v=9"></script>
 </body>
 </html>

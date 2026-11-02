@@ -1,116 +1,95 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // loader
-  const loader = document.getElementById('loader');
-  setTimeout(() => loader.classList.add('hidden'), 1500);
+  // entry gate (home page only)
+  const gate = document.getElementById('gate');
+  // people already on the site (e.g. coming back from the projects page) don't get the card again
+  let cameFromSite = false;
+  try { cameFromSite = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (e) {}
+  if (gate && cameFromSite) {
+    gate.classList.add('hidden');
+    gate.style.display = 'none';
+  } else if (gate) {
+    const card = gate.querySelector('.gate-card');
+    const gateImg = gate.querySelector('.gate-img');
+    const gateText = document.getElementById('gateText');
+    const gateActions = document.getElementById('gateActions');
+    document.body.style.overflow = 'hidden';
 
-  // hero — split name into letters, then reveal name + rest of hero content
-  const heroTitle = document.getElementById('heroTitle');
-  if (heroTitle) {
-    const words = heroTitle.textContent.split(' ');
-    heroTitle.textContent = '';
-    let i = 0;
-    words.forEach((word, wi) => {
-      const wordGroup = document.createElement('span');
-      wordGroup.className = 'word-group';
-      word.split('').forEach(ch => {
-        const span = document.createElement('span');
-        span.className = 'letter';
-        span.style.transitionDelay = `${i * 30}ms`;
-        span.textContent = ch;
-        wordGroup.appendChild(span);
-        i++;
+    const INTRO = "well, my name is chukwuemeka orji (yeah ik, you cant pronounce it), just call me \"chuk\" or \"samuel\" if you may. im 20 and i currently work as an ai, automation and digital operations specialist. sounds fun yeah ? it is cos i do a bunch of things. well, i love to play football, i love to play video games, id beat you in fifa, add me @emekamustshine1. i also like to draw and watch creepy-ass documentaries. im not a fan of movies except its really trending; i'm the 15 seasons series kind of guy. i believe im quiet on the outside and im soft spoken. im single (and searching 😂). well that's enough ab my personal life";
+
+    const showChoice = (question, onYes) => {
+      gateText.textContent = question;
+      gateActions.style.display = '';
+      gateActions.innerHTML = '<button class="gate-btn" data-a="yes" type="button">yes</button><button class="gate-btn" data-a="no" type="button">no</button>';
+      gateActions.querySelector('[data-a="yes"]').addEventListener('click', onYes);
+      gateActions.querySelector('[data-a="no"]').addEventListener('click', () => {
+        gateText.textContent = "okay, i'll wait till you stop lying and click yes";
+        gateActions.innerHTML = '<button class="gate-btn" type="button">yes</button>';
+        gateActions.firstChild.addEventListener('click', onYes);
       });
-      heroTitle.appendChild(wordGroup);
-      if (wi < words.length - 1) heroTitle.appendChild(document.createTextNode(' '));
+    };
+
+    const closeGate = () => {
+      gate.classList.add('hidden');
+      document.body.style.overflow = '';
+      location.hash = '#projects';
+    };
+
+    const typeIntro = () => {
+      gate.classList.add('typing');
+      card.classList.add('wide');
+      if (gateImg) gateImg.style.display = 'none';
+      gateActions.style.display = 'none';
+      gateActions.innerHTML = '';
+      gateText.classList.add('typed');
+      gateText.textContent = '';
+      let i = 0;
+      const tick = () => {
+        gateText.textContent = [...INTRO].slice(0, ++i).join('');
+        if (i < [...INTRO].length) {
+          const ch = INTRO[i - 1];
+          setTimeout(tick, /[.,;?]/.test(ch) ? 220 : 28);
+        } else {
+          gateActions.innerHTML = '<button class="gate-btn" type="button">next</button>';
+          gateActions.style.display = '';
+          gateActions.firstChild.addEventListener('click', () => {
+            gate.classList.remove('typing');
+            gateText.classList.remove('typed');
+            card.classList.remove('wide');
+            showChoice('do you want to hear ab all the projects ive created?! (or read ab them basically)', closeGate);
+          });
+        }
+      };
+      tick();
+    };
+
+    const onYes = () => {
+      gateText.textContent = 'obviously, who wouldn\'t 😛';
+      gateActions.style.display = 'none';
+      setTimeout(typeIntro, 1100);
+    };
+
+    document.getElementById('gateYes').addEventListener('click', onYes);
+    document.getElementById('gateNo').addEventListener('click', () => {
+      gateText.textContent = "okay, i'll wait till you stop lying and click yes";
+      gateActions.innerHTML = '<button class="gate-btn" type="button">yes</button>';
+      gateActions.firstChild.addEventListener('click', onYes);
     });
-    setTimeout(() => {
-      heroTitle.classList.add('in');
-      heroTitle.closest('.hero-content').classList.add('in');
-    }, 1600);
   }
 
-  // nav — scrolled class + active link highlight
-  const nav      = document.getElementById('nav');
+  // routes — #projects (default), #about, #stories, #experience and #contact each show only that section
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-
-  // AI trigger — starts near the top, docks to the bottom-right once you scroll past the hero
-  const aiTrigger      = document.getElementById('ai-trigger');
-  const aiTriggerLabel = document.getElementById('aiTriggerLabel');
-
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-
-    let current = '';
-    sections.forEach(sec => {
-      if (window.scrollY >= sec.offsetTop - 200) current = sec.id;
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--blue-bright)' : '';
-    });
-
-    if (aiTrigger) {
-      const docked = window.scrollY > window.innerHeight * 0.6;
-      aiTrigger.classList.toggle('docked', docked);
-      if (aiTriggerLabel) aiTriggerLabel.textContent = docked ? 'talk w my ai' : 'talk to my ai';
-    }
-  });
-
-  // smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', function (e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
-    });
-  });
-
-  // hero project stack — sits fanned out in the hero from the start; scrolling splits it apart and drops it away
-  const heroScroll   = document.getElementById('heroScroll');
-  const galleryStage = document.getElementById('galleryStage');
-  const heroCue      = document.getElementById('heroScrollCue');
-  if (heroScroll && galleryStage) {
-    const items = Array.from(galleryStage.querySelectorAll('.gallery-item'));
-    const mid = (items.length - 1) / 2;
-    let ticking = false;
-
-    const render = () => {
-      ticking = false;
-      const rect = heroScroll.getBoundingClientRect();
-      const scrollable = heroScroll.offsetHeight - window.innerHeight;
-      const progress = Math.min(Math.max(-rect.top / scrollable, 0), 1);
-
-      if (heroCue) heroCue.style.opacity = Math.max(1 - progress / 0.08, 0);
-
-      // scale the fall/spread distances down on narrow viewports so the stack
-      // stays inside its container instead of overflowing on mobile
-      const scaleFactor = Math.max(0.38, Math.min(1, window.innerWidth / 1440));
-
-      items.forEach((item, i) => {
-        const offset = i - mid;
-        const restX = offset * 42 * scaleFactor;
-        const restRot = offset * 7;
-        const split = Math.min(Math.max((progress - i * 0.05) / 0.75, 0), 1);
-
-        const x = restX + offset * 240 * scaleFactor * split;
-        const y = 600 * scaleFactor * split;
-        const rot = restRot * (1 - 0.5 * split);
-        const scale = 1 - 0.12 * split;
-        const opacity = 1 - split;
-
-        item.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px) rotate(${rot}deg) scale(${scale})`;
-        item.style.opacity = opacity;
-        item.style.zIndex = 100 - Math.abs(offset) - i;
-      });
-    };
-    // rAF-throttled so the stack redraws every frame while scrolling, not just on scroll-event ticks
-    const updateGallery = () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(render); }
-    };
-    window.addEventListener('scroll', updateGallery, { passive: true });
-    window.addEventListener('resize', updateGallery);
-    render();
-  }
+  const VIEWS = ['projects', 'about', 'stories', 'experience', 'contact'];
+  const route = () => {
+    const id = location.hash.slice(1);
+    const view = VIEWS.includes(id) ? id : 'projects';
+    sections.forEach(sec => sec.classList.toggle('active-view', sec.id === view));
+    // instant — html has smooth scrolling, which would animate from the old position and land on the footer
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.dispatchEvent(new Event('viewchange'));
+  };
+  window.addEventListener('hashchange', route);
+  route();
 
   // footer CTA — cycle the verb
   const ctaWord = document.getElementById('ctaWordCycle');
@@ -138,16 +117,85 @@ document.addEventListener('DOMContentLoaded', () => {
     card.addEventListener('mouseleave', function () { this.style.transform = ''; });
   });
 
-  // contact form — button feedback after submit
-  const form = document.querySelector('.contact-form');
-  if (form) {
-    form.addEventListener('submit', function () {
-      const btn = this.querySelector('.submit-btn span');
-      if (!btn) return;
-      setTimeout(() => { btn.textContent = 'Message sent ✓'; }, 100);
-      setTimeout(() => { btn.textContent = 'Send message';   }, 4000);
+  // contact — receipt printer: processing -> printing -> complete as soon as the contact page is entered
+  const printer = document.getElementById('printer');
+  if (printer) {
+    const status = document.getElementById('printerStatus');
+    const labels = { processing: 'Processing your message', printing: 'Printing my contact', complete: 'Receipt ready' };
+    const setStage = stage => {
+      printer.dataset.stage = stage;
+      status.textContent = labels[stage];
+      status.classList.remove('swap');
+      void status.offsetWidth;
+      status.classList.add('swap');
+    };
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const gateOpen = () => { const g = document.getElementById('gate'); return g && !g.classList.contains('hidden'); };
+    let started = false, timers = [];
+    const play = () => {
+      timers.forEach(clearTimeout);
+      setStage('processing');
+      if (reduce) { setStage('complete'); return; }
+      timers = [
+        setTimeout(() => setStage('printing'), 600),
+        setTimeout(() => setStage('complete'), 600 + 1750)
+      ];
+    };
+    const start = () => {
+      if (started || gateOpen()) return;
+      started = true;
+      play();
+    };
+    document.addEventListener('viewchange', () => { if (location.hash === '#contact') start(); });
+    new IntersectionObserver(entries => { if (entries[0].isIntersecting) start(); }, { threshold: 0.3 }).observe(printer);
+
+    const replay = document.getElementById('printerReplay');
+    if (replay) replay.addEventListener('click', () => { started = true; play(); });
+  }
+
+  // contact form — toggled open from under the receipt, sent in place so visitors stay on the site
+  const formToggle = document.getElementById('formToggle');
+  const formWrap = document.getElementById('contactFormWrap');
+  if (formToggle && formWrap) {
+    formToggle.addEventListener('click', () => {
+      const open = formWrap.hidden;
+      formWrap.hidden = !open;
+      formToggle.setAttribute('aria-expanded', String(open));
+      if (open) formWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
   }
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async e => {
+      if (!window.fetch) return;
+      e.preventDefault();
+      const label = contactForm.querySelector('.submit-btn span');
+      label.textContent = 'Sending...';
+      try {
+        const res = await fetch(contactForm.action, { method: 'POST', body: new FormData(contactForm), headers: { Accept: 'application/json' } });
+        if (!res.ok) throw new Error();
+        contactForm.reset();
+        label.textContent = 'Message sent ✓';
+      } catch (err) {
+        label.textContent = 'Failed — try again';
+      }
+      setTimeout(() => { label.textContent = 'Send message'; }, 4000);
+    });
+  }
+
+  // site menu — floating button, opens a list of every page
+  const menuBtn = document.getElementById('menuBtn');
+  const menuPanel = document.getElementById('menuPanel');
+  if (menuBtn && menuPanel) {
+    const setMenu = open => { menuPanel.hidden = !open; menuBtn.setAttribute('aria-expanded', String(open)); };
+    menuBtn.addEventListener('click', () => setMenu(menuPanel.hidden));
+    menuPanel.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+    document.addEventListener('click', e => { if (!e.target.closest('#site-menu')) setMenu(false); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+  }
+
+  // footer year — always the current year
+  document.querySelectorAll('.footer-year').forEach(el => { el.textContent = new Date().getFullYear(); });
 
   // tag click ripple
   document.querySelectorAll('.tag').forEach(tag => {
