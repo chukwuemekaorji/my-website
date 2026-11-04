@@ -80,6 +80,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // routes — #projects (default), #about, #stories, #experience and #contact each show only that section
   const sections = document.querySelectorAll('section[id]');
   const VIEWS = ['projects', 'about', 'stories', 'experience', 'contact'];
+  const PAGE_TITLES = {
+    projects: "Things I've built",
+    about: 'More about me',
+    stories: 'A few stories',
+    experience: "Where I've worked",
+    contact: 'Contact'
+  };
   const route = () => {
     const id = location.hash.slice(1);
     const view = VIEWS.includes(id) ? id : 'projects';
@@ -90,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // each section counts as its own page in Google Analytics (/projects, /about, ...)
     if (typeof gtag === 'function') {
       gtag('event', 'page_view', {
-        page_title: view,
+        page_title: PAGE_TITLES[view] + ' — Chukwuemeka Orji',
         page_path: '/' + view,
         page_location: location.origin + '/' + view
       });
