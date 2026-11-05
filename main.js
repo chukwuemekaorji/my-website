@@ -94,6 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // instant — html has smooth scrolling, which would animate from the old position and land on the footer
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     document.dispatchEvent(new Event('viewchange'));
+    // browser tab shows which section you're on
+    document.title = PAGE_TITLES[view] + ' — Chukwuemeka Orji';
     // each section counts as its own page in Google Analytics (/projects, /about, ...)
     if (typeof gtag === 'function') {
       gtag('event', 'page_view', {
