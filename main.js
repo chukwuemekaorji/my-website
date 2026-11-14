@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const gateActions = document.getElementById('gateActions');
     document.body.style.overflow = 'hidden';
 
-    const INTRO = "well, my name is chukwuemeka orji (yeah ik, you cant pronounce it), just call me \"chuk\" or \"samuel\" if you may. im 20 and i currently work as an ai, automation and digital operations specialist. sounds fun yeah ? it is cos i do a bunch of things. well, i love to play football, i love to play video games, id beat you in fifa, add me @emekamustshine1. i also like to draw and watch creepy-ass documentaries. im not a fan of movies except its really trending; i'm the 15 seasons series kind of guy. i believe im quiet on the outside and im soft spoken. well that's enough ab my personal life";
+    const INTRO = "well, my name is chukwuemeka orji (if you have no affiliations w the african community, just call me \"samuel\" for your own good). im 20 and i currently work as an ai, automation and digital operations specialist. sounds fun yeah ? it is cos i do a bunch of things. well, i love to play football, i love to play video games, id beat you in fifa, add me @emekamustshine1. i also like to draw and watch creepy-ass documentaries. im not a fan of movies except its really trending; i'm the 15 seasons series kind of guy. i believe im quiet on the outside and im soft spoken. well that's enough ab my personal life";
 
     const showChoice = (question, onYes) => {
       gateText.textContent = question;
