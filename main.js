@@ -43,13 +43,49 @@ document.addEventListener('DOMContentLoaded', () => {
       gateActions.innerHTML = '';
       gateText.classList.add('typed');
       gateText.textContent = '';
+      const chars = [...INTRO];
       let i = 0;
-      const tick = () => {
-        gateText.textContent = [...INTRO].slice(0, ++i).join('');
-        if (i < [...INTRO].length) {
-          const ch = INTRO[i - 1];
-          setTimeout(tick, /[.,;?]/.test(ch) ? 220 : 28);
-        } else {
+      let done = false;
+      let timerMode = false;
+      // voice: start playing and show a mute toggle
+      let muteBtn = null;
+      const voiceOn = introVoice && introVoice.unlocked;
+      if (voiceOn) {
+        introVoice.currentTime = 0;
+        introVoice.muted = false;
+        introVoice.play().catch(() => { if (!done && !timerMode) { timerMode = true; if (muteBtn) muteBtn.remove(); tick(); } });
+        muteBtn = document.createElement('button');
+        muteBtn.type = 'button';
+        muteBtn.className = 'gate-btn gate-mute';
+        muteBtn.textContent = '🔊 mute';
+        muteBtn.addEventListener('click', () => {
+          introVoice.muted = !introVoice.muted;
+          muteBtn.textContent = introVoice.muted ? '🔇 unmute' : '🔊 mute';
+        });
+        card.appendChild(muteBtn);
+      }
+      const finish = () => {
+        if (done) return;
+        done = true;
+        gateText.textContent = INTRO;
+        if (muteBtn) muteBtn.remove();
+        if (introVoice) introVoice.pause();
+        showNext();
+      };
+      // when the voice is playing, the typing follows the audio so they stay in sync
+      const syncToVoice = () => {
+        if (done || timerMode) return;
+        const d = introVoice.duration;
+        if (!d || !isFinite(d) || introVoice.paused && introVoice.currentTime === 0) {
+          requestAnimationFrame(syncToVoice);
+          return;
+        }
+        const n = Math.min(chars.length, Math.ceil((introVoice.currentTime / d) * chars.length));
+        if (n > i) { i = n; gateText.textContent = chars.slice(0, i).join(''); }
+        if (i >= chars.length || introVoice.ended) finish();
+        else requestAnimationFrame(syncToVoice);
+      };
+      const showNext = () => {
           gateActions.innerHTML = '<button class="gate-btn" type="button">next</button>';
           gateActions.style.display = '';
           gateActions.firstChild.addEventListener('click', () => {
@@ -58,12 +94,43 @@ document.addEventListener('DOMContentLoaded', () => {
             card.classList.remove('wide');
             showChoice('do you want to hear ab all the projects ive created?! (or read ab them basically)', closeGate);
           });
+      };
+      // fallback: plain timed typing when there's no voice
+      const tick = () => {
+        if (done) return;
+        gateText.textContent = chars.slice(0, ++i).join('');
+        if (i < chars.length) {
+          const ch = INTRO[i - 1];
+          setTimeout(tick, /[.,;?]/.test(ch) ? 220 : 28);
+        } else {
+          finish();
         }
       };
-      tick();
+      if (voiceOn) {
+        syncToVoice();
+        introVoice.addEventListener('error', () => { if (!done && !timerMode) { timerMode = true; if (muteBtn) muteBtn.remove(); tick(); } }, { once: true });
+      } else {
+        tick();
+      }
+    };
+
+    // intro voice, read in my own voice. browsers only allow audio after a tap,
+    // so it gets unlocked silently on the "yes" click and played when typing starts
+    let introVoice = null;
+    try {
+      introVoice = new Audio('audio/intro.mp3');
+      introVoice.preload = 'auto';
+    } catch (e) { introVoice = null; }
+    const unlockVoice = () => {
+      if (!introVoice || introVoice.unlocked) return;
+      introVoice.muted = true;
+      const p = introVoice.play();
+      const ok = () => { introVoice.pause(); introVoice.currentTime = 0; introVoice.unlocked = true; };
+      if (p && p.then) p.then(ok).catch(() => {}); else ok();
     };
 
     const onYes = () => {
+      unlockVoice();
       gateText.textContent = 'obviously, who wouldn\'t 😛';
       gateActions.style.display = 'none';
       setTimeout(typeIntro, 1100);
