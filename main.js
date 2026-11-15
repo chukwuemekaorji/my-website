@@ -15,7 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const gateActions = document.getElementById('gateActions');
     document.body.style.overflow = 'hidden';
 
-    const INTRO = "well, my name is chukwuemeka orji (if you have no affiliations w the african community, just call me \"samuel\" for your own good). im 20 and i currently work as an ai, automation and digital operations specialist. sounds fun yeah ? it is cos i do a bunch of things. well, i love to play football, i love to play video games, id beat you in fifa, add me @emekamustshine1. i also like to draw and watch creepy-ass documentaries. im not a fan of movies except its really trending; i'm the 15 seasons series kind of guy. i also like reading, books like \"rich dad, poor dad\", \"atomic habits\", \"the hard thing about hard things\" and books related to that genre. well that's enough ab me";
+    // each sentence with where it starts and ends in audio/intro.mp3 (seconds),
+    // so the typing can follow the voice sentence by sentence
+    const INTRO_TIMINGS = /*TIMINGS*/[]/*END*/;
+    const INTRO = INTRO_TIMINGS.map(x => x.t).join('');
 
     const showChoice = (question, onYes) => {
       gateText.textContent = question;
@@ -72,15 +75,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (introVoice) introVoice.pause();
         showNext();
       };
-      // when the voice is playing, the typing follows the audio so they stay in sync
+      // when the voice is playing, the typing follows it sentence by sentence
       const syncToVoice = () => {
         if (done || timerMode) return;
-        const d = introVoice.duration;
-        if (!d || !isFinite(d) || introVoice.paused && introVoice.currentTime === 0) {
-          requestAnimationFrame(syncToVoice);
-          return;
+        const now = introVoice.currentTime;
+        let n = 0;
+        for (const seg of INTRO_TIMINGS) {
+          const len = [...seg.t].length;
+          if (now >= seg.e) { n += len; continue; }
+          if (now > seg.s) n += Math.floor(((now - seg.s) / (seg.e - seg.s)) * len);
+          break;
         }
-        const n = Math.min(chars.length, Math.ceil((introVoice.currentTime / d) * chars.length));
         if (n > i) { i = n; gateText.textContent = chars.slice(0, i).join(''); }
         if (i >= chars.length || introVoice.ended) finish();
         else requestAnimationFrame(syncToVoice);
