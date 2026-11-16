@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // each sentence with where it starts and ends in audio/intro.mp3 (seconds),
     // so the typing can follow the voice sentence by sentence
-    const INTRO_TIMINGS = /*TIMINGS*/[]/*END*/;
+    const INTRO_TIMINGS = [{"t": "well, my name is chukwuemeka orji ", "s": 0.25, "e": 2.59}, {"t": "(if you have no affiliations w the african community, just call me \"samuel\" for your own good). ", "s": 2.89, "e": 6.63}, {"t": "im 20 and i currently work as an ai, automation and digital operations specialist. ", "s": 7.08, "e": 11.5}, {"t": "sounds fun yeah ? it is cos i do a bunch of things. ", "s": 11.9, "e": 14.76}, {"t": "well, i love to play football, i love to play video games, id beat you in fifa, add me @emekamustshine1. ", "s": 15.21, "e": 22.59}, {"t": "i also like to draw and watch creepy-ass documentaries. ", "s": 23.04, "e": 25.97}, {"t": "im not a fan of movies except its really trending; i'm the 15 seasons series kind of guy. ", "s": 26.37, "e": 31.26}, {"t": "i also like reading, books like \"rich dad, poor dad\", \"atomic habits\", \"the hard thing about hard things\" and books related to that genre. ", "s": 31.71, "e": 37.74}, {"t": "well that's enough ab me. ", "s": 38.29, "e": 39.7}, {"t": "now click next, and when you get to my profile, click on menu to see other things ab me", "s": 40.25, "e": 45.34}];
     const INTRO = INTRO_TIMINGS.map(x => x.t).join('');
 
     const showChoice = (question, onYes) => {
